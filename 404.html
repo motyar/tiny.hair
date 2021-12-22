@@ -88,11 +88,15 @@ document.addEventListener("input", function(){
   fetch('https://motyar.info/vim.expert.php', {
     method: 'POST',
     headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
     },
-    body: JSON.stringify({path: window.location.pathname, text: marked.parse(document.body.innerText), meta:doc})
-  });
+    body: JSON.stringify({
+        path: window.location.pathname,
+        text: marked.parse(document.body.innerText),
+        meta: doc
+    })
+ });
   
 
 });
