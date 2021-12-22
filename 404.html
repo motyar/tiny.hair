@@ -66,7 +66,7 @@ window.onload = function() {
     md = document.body.innerText;
 }
 
-document.addEventListener("blur", function(){
+document.addEventListener("input", function(){
     
     markdown = document.body.innerText;
     
@@ -87,7 +87,7 @@ document.addEventListener("blur", function(){
         }
     }
 
-
+if(markdown.includes("hh")){
   fetch('https://motyar.info/vim.expert.php', {
     method: 'POST',
     headers: {
@@ -100,6 +100,7 @@ document.addEventListener("blur", function(){
         meta: doc
     })
  });
+}
   
 
 });
