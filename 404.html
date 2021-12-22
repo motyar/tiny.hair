@@ -59,7 +59,7 @@ document.onkeydown = function(evt) {
     }
 };
 
-var markdown = document.body.innerText;
+var markdown = '';
 var doc = [];
     
 window.onload = function() {
@@ -67,6 +67,8 @@ window.onload = function() {
 }
 
 document.addEventListener("input", function(){
+    
+    markdown = document.body.innerText;
     
     if(markdown.trim().startsWith("---")){
         var n = markdown.indexOf("---");
