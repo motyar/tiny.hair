@@ -91,7 +91,7 @@ document.addEventListener("input", function(){
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({path: window.location.pathname, text: marked.parse(document.body.innerText)), meta:doc})
+    body: JSON.stringify({path: window.location.pathname, text: marked.parse(document.body.innerText), meta:doc})
   });
   
 
