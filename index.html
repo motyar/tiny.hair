@@ -8,9 +8,12 @@
       (async () => {
         const response = await fetch('https://api.github.com/repos/motyar/vim.expert/contents/');
         const data = await response.json();
+          console.log(data);
         let htmlString = '<ul>';
         for (let file of data) {
+            if(!['CNAME','index.html'].includes(file.name)){
           htmlString += `<li><a href="${file.path}">${file.name}</a></li>`;
+            }
         }
         htmlString += '</ul>';
         document.getElementsByTagName('body')[0].innerHTML = htmlString;
