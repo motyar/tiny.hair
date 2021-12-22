@@ -59,32 +59,29 @@ document.onkeydown = function(evt) {
     }
 };
 
-
-window.onload = function() {
-    md = document.body.innerText;
-    document.body.innerHTML = marked.parse(md);
-}
-
+var markdown = document.body.innerText;
+var doc = [];
+    
 document.addEventListener("input", function(){
     
-    // get yaml config
-    yamlStr = document.body.innerText.trim().split('---')[1].trim();
-    try {
-        doc = jsyaml.safeLoad(yamlStr);
-        console.log(doc);
-    }catch (e) {
-        console.error(e);
+    if(markdown.trim().startsWith("---")){
+        var n = markdown.indexOf("---");
+        var m = markdown.indexOf("---",parseInt(n)+1);
+        var o = markdown.indexOf("---",parseInt(m)+1);
+
+        markdown = markdown.slice(parseInt(m)+3);
+
+        // get yaml config
+        yamlStr = document.body.innerText.trim().split('---')[1].trim();
+        try {
+            doc = jsyaml.safeLoad(yamlStr);
+            console.log(doc);
+        }catch (e) {
+            console.error(e);
+        }
     }
 
-/*
-    fetch("https://motyar.info/vim.expert.php", { 
-        method: "POST", 
-        body: "path="+window.location.pathname+"&text=" + encodeURIComponent(marked.parse(document.body.innerText)), 
-        headers: { "Content-type": "application/x-www-form-urlencoded" }
-    })
-    */
-    
-    
+
   fetch('https://motyar.info/vim.expert.php', {
     method: 'POST',
     headers: {
