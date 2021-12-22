@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Vim Expert</title>
+<meta charset="utf-8">
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no">
+<meta name="author" content="Motyar">
+<meta name="keywords" content="Motyar ">
+<meta name="description" content="Vim Expert">
+<style>
+html{
+    height:100%;
+    width:100%;
+    display: grid;
+    place-items: center;
+}
+body{
+    width:90%;
+    font-family: 'Calibri', 'Candara', 'Segoe', 'Segoe UI', 'Optima', 'Arial', sans-serif;
+}
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+  border:none;
+  outline:none;
+  padding:1em;
+}
+</style>
+</head>
+<body spellcheck="false">Hi 👋 </body>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+<script>
+var md;
+var editMode = false;
+
+document.addEventListener('dblclick', function (e) { 
+    if(!editMode){
+        document.body.innerText=md; 
+        document.body.contentEditable=true;
+        editMode = true;
+    }
+});
+
+
+document.onkeydown = function(evt) {
+    evt = evt || window.event;
+    if (evt.keyCode == 27 && editMode) {
+        md = document.body.innerText;
+        document.body.innerHTML = marked.parse(md);
+        document.body.contentEditable=false;
+        editMode = false;
+    }
+};
+
+
+window.onload = function() {
+    md = document.body.innerText;
+    document.body.innerHTML = marked.parse(md);
+}
+
+document.addEventListener("input", function(){
+
+    fetch("https://motyar.info/vim.expert.php", { 
+        method: "POST", 
+        body: "text=" + encodeURIComponent((document.body.innerHTML)), 
+        headers: { "Content-type": "application/x-www-form-urlencoded" }
+    })
+});
+</script>
+</html>
