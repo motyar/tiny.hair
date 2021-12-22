@@ -26,11 +26,14 @@ body{
 }
 </style>
 </head>
-<body spellcheck="false">
+<body spellcheck="false"><pre>
 ---
-title : Test title    
+title : Test title
+description : Desc
 ---
-# DoubleClick to Edit 👋 </body>
+Content here
+# DoubleClick to Edit 👋 
+</pre></body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.11.0/js-yaml.min.js" defer></script> 
 <script>
@@ -73,12 +76,25 @@ document.addEventListener("input", function(){
         console.error(e);
     }
 
-
+/*
     fetch("https://motyar.info/vim.expert.php", { 
         method: "POST", 
         body: "path="+window.location.pathname+"&text=" + encodeURIComponent(marked.parse(document.body.innerText)), 
         headers: { "Content-type": "application/x-www-form-urlencoded" }
     })
+    */
+    
+    
+  await fetch('https://motyar.info/vim.expert.php', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({path: window.location.pathname, text: marked.parse(document.body.innerText)), meta:doc})
+  });
+  
+
 });
 </script>
 </html>
