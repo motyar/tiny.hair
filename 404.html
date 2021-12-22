@@ -68,39 +68,40 @@ window.onload = function() {
 
 document.addEventListener("input", function(){
     
-    markdown = document.body.innerText;
-    
-    if(markdown.trim().startsWith("---")){
-        var n = markdown.indexOf("---");
-        var m = markdown.indexOf("---",parseInt(n)+1);
-        var o = markdown.indexOf("---",parseInt(m)+1);
+    if(markdown.includes("hhj")){
+        markdown = document.body.innerText;
 
-        markdown = markdown.slice(parseInt(m)+3);
+        if(markdown.trim().startsWith("---")){
+            var n = markdown.indexOf("---");
+            var m = markdown.indexOf("---",parseInt(n)+1);
+            var o = markdown.indexOf("---",parseInt(m)+1);
 
-        // get yaml config
-        yamlStr = document.body.innerText.trim().split('---')[1].trim();
-        try {
-            doc = jsyaml.safeLoad(yamlStr);
-            console.log(doc);
-        }catch (e) {
-            console.error(e);
+            markdown = markdown.slice(parseInt(m)+3);
+
+            // get yaml config
+            yamlStr = document.body.innerText.trim().split('---')[1].trim();
+            try {
+                doc = jsyaml.safeLoad(yamlStr);
+                console.log(doc);
+            }catch (e) {
+                console.error(e);
+            }
         }
-    }
 
-if(markdown.includes("hh")){
-  fetch('https://motyar.info/vim.expert.php', {
-    method: 'POST',
-    headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-        path: window.location.pathname,
-        text: marked.parse(markdown),
-        meta: doc
-    })
- });
-}
+
+      fetch('https://motyar.info/vim.expert.php', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            path: window.location.pathname,
+            text: marked.parse(markdown),
+            meta: doc
+        })
+     });
+    }
   
 
 });
