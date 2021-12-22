@@ -26,8 +26,13 @@ body{
 }
 </style>
 </head>
-<body spellcheck="false"># DoubleClick to Edit 👋 </body>
+<body spellcheck="false">
+---
+title : Test title    
+---
+# DoubleClick to Edit 👋 </body>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/3.11.0/js-yaml.min.js" defer></script> 
 <script>
 var md;
 var editMode = false;
@@ -58,6 +63,16 @@ window.onload = function() {
 }
 
 document.addEventListener("input", function(){
+    
+    // get yaml config
+    yamlStr = document.body.innerText.trim().split('---')[1].trim();
+    try {
+        doc = jsyaml.safeLoad(yamlStr);
+        console.log(doc);
+    }catch (e) {
+        console.error(e);
+    }
+
 
     fetch("https://motyar.info/vim.expert.php", { 
         method: "POST", 
