@@ -62,6 +62,10 @@ document.onkeydown = function(evt) {
 var markdown = document.body.innerText;
 var doc = [];
     
+window.onload = function() {
+    md = document.body.innerText;
+}
+
 document.addEventListener("input", function(){
     
     if(markdown.trim().startsWith("---")){
