@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>vim show hidden characters</title>
+<meta charset="utf-8">
+<meta name=viewport content="width=device-width, initial-scale=1.0, maximum-scale = 1.0, user-scalable=no">
+<meta name="description" content="vim show hidden characters">
+<style>
+html{
+    height:100%;
+    width:100%;
+    display: grid;
+    place-items: center;
+}
+body{
+    width:90%;
+    font-family: "Calibri", "Candara", "Segoe", "Segoe UI", "Optima", "Arial", sans-serif;
+}
+[contenteditable="true"]:active,
+[contenteditable="true"]:focus{
+  border:none;
+  outline:none;
+  padding:1em;
+}
+</style>
+</head>
+<body><h1 id="vim-show-hidden-characters">Vim show hidden characters</h1>
+<ul>
+<li>Put these lines into <code>~/.vimrc</code></li>
+</ul>
+<pre><code>
+set list
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+</code></pre>
+<ul>
+<li>You can also show hidden characters in vim by running these commands</li>
+</ul>
+<pre><code>:set list
+:set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:¶,precedes:«,extends:»
+</code></pre>
+<p></p></body>
+</html>
